@@ -1,10 +1,10 @@
-package validate;
+package services;
 
 import orders.TodosList;
 
 import java.util.Scanner;
 
-public class validateInput {
+public class ValidateService {
 
     public static int getCorrectTodoNumber() {
 

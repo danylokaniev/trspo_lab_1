@@ -1,13 +1,9 @@
 package com.company;
 
-import orders.Order;
 import orders.TodoItem;
 import orders.TodosList;
 import peoples.Manager;
 import peoples.Repair;
-import validate.validateInput;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,10 +14,15 @@ public class Main {
         TodosList.addTodos();
         TodosList.printFullTodoList();
 
-        TodosList.addTodo(new TodoItem(TodosList.getAmountOfTodos() , 150, "Повесить люстру"));
-        TodosList.addTodo(new TodoItem(TodosList.getAmountOfTodos() , 1500, "Сделать крышу"));
+        TodosList.addTodo(new TodoItem(TodosList.getAmountOfTodos(), 150, "Повесить люстру"));
+        TodosList.addTodo(new TodoItem(TodosList.getAmountOfTodos(), 1500, "Сделать крышу"));
 
         TodosList.printFullTodoList();
 
-   }
+        Repair repair1 = new Repair(1500, 40, "Dan");
+        repair1.printInfo();
+        repair1.toggleFreeState();
+        repair1.printInfo();
+
+    }
 }

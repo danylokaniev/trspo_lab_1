@@ -31,7 +31,7 @@ public class TodosList {
 
     public static int getPriceByTodoId(int id){
         for (TodoItem todo : todoList) {
-            if(todo.getId() == id){
+            if (todo.getId() == id) {
                 return todo.getPrice();
             }
         }
