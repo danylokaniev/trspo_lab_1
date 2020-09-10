@@ -4,6 +4,8 @@ import peoples.Manager;
 import peoples.Repair;
 
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Order {
     private Repair repair;
@@ -32,35 +34,34 @@ public class Order {
     }
 
     public void createSetOfTodos(String stringByTodosList) {
+        int maxTodoIndex = TodosList.getAmountOfTodos();
 
-        String[] array = stringByTodosList.split(" ");
+        String pattern = "\\b(\\d+)\\b";
 
-        int maxTodoIndex = TodosList.getTodosListLength();
+        Pattern r = Pattern.compile(pattern);
 
-        for (String s : array) {
+        Matcher m = r.matcher(stringByTodosList);
 
-            if (!s.equals(" ")) {
-
-                int index = Integer.parseInt(s);
-
-                if (index >= 0 && index < maxTodoIndex) {
-                    setOfTodos.add(index);
-                }
+        while(m.find()) {
+            int index = Integer.parseInt(m.group());
+            if (index >= 0 && index < maxTodoIndex) {
+                setOfTodos.add(index);
             }
         }
+
     }
 
-    public void addTodo(int todoIndex) {
-        setOfTodos.add(todoIndex);
+    public void addTodo(int todoId) {
+        setOfTodos.add(todoId);
     }
 
-    public void deleteTodo(int todoIndex) {
-        setOfTodos.remove(todoIndex);
+    public void deleteTodo(int todoId) {
+        setOfTodos.remove(todoId);
     }
 
     public void printSetOfTodos() {
-        for (int todoIndex : setOfTodos) {
-            System.out.println(TodosList.getTodoByIndex(todoIndex));
+        for (int id : setOfTodos) {
+            System.out.println(TodosList.getFullInfoByTodoId(id));
         }
     }
 }

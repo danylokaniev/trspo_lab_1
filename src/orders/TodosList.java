@@ -1,45 +1,65 @@
 package orders;
 
-import java.io.Serializable;
+import java.util.LinkedHashSet;
 
-public enum TodosList {
-    PAINT("Покрасить стену"),
-    FIXSOCKET("Починить розетку"),
-    LAYTILES("Положить плитку"),
-    PLASTER("Заштукатурить стену"),
-    GLUEWALL("Поклеить обои"),
-    COLLECT("Собрать мебель");
+public class TodosList {
 
-    private final String name;
+    private static final LinkedHashSet<TodoItem> todoList = new LinkedHashSet<>();
 
-    TodosList(String name) {
-        this.name = name;
+    public static void addTodos() {
+        todoList.add(new TodoItem(0, 900, "Покрасить стену"));
+        todoList.add(new TodoItem(1, 300, "Починить розетку"));
+        todoList.add(new TodoItem(2, 1250, "Положить плитку"));
+        todoList.add(new TodoItem(3, 1300, "Заштукатурить стену"));
+        todoList.add(new TodoItem(4, 750, "Поклеить обои"));
+        todoList.add(new TodoItem(5, 1000, "Собрать мебель"));
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public static void printFullTodosList() {
-        for (TodosList todo : TodosList.values()) {
-            System.out.println(todo.ordinal() + ". " + todo.getName());
+    public static void printFullTodoList() {
+        for (TodoItem todo : todoList) {
+            System.out.println("ID: " + todo.getId() + " Название: `" + todo.getName() + "` Цена: " + todo.getPrice());
         }
     }
 
-    public static String getTodoByIndex(int index) {
-        return switch (index) {
-            case 0 -> TodosList.PAINT.getName();
-            case 1 -> TodosList.FIXSOCKET.getName();
-            case 2 -> TodosList.LAYTILES.getName();
-            case 3 -> TodosList.PLASTER.getName();
-            case 4 -> TodosList.GLUEWALL.getName();
-            case 5 -> TodosList.COLLECT.getName();
-            default -> "";
-        };
+    public static int getAmountOfTodos() {
+        return todoList.size();
     }
 
-    public static int getTodosListLength() {
-        return TodosList.values().length;
+    public static void addTodo(TodoItem todo) {
+        todoList.add(todo);
     }
+
+    public static int getPriceByTodoId(int id){
+        for (TodoItem todo : todoList) {
+            if(todo.getId() == id){
+                return todo.getPrice();
+            }
+        }
+        return -1;
+    }
+
+     public static String getNameByTodoId(int id){
+        for (TodoItem todo : todoList) {
+            if(todo.getId() == id){
+                return todo.getName();
+            }
+        }
+        return "";
+    }
+
+    public static String getFullInfoByTodoId(int id){
+        for (TodoItem todo : todoList) {
+            if(todo.getId() == id){
+                return ("ID: " + todo.getId() + " Название: `" + todo.getName() + "` Цена: " + todo.getPrice());
+            }
+        }
+        return "";
+    }
+
+
+
+
+
+
 
 }

@@ -11,7 +11,7 @@ public class validateInput {
         Scanner scanner = new Scanner(System.in);
 
         int todoIndex;
-        int maxTodosIndex = TodosList.getTodosListLength();
+        int maxTodosIndex = TodosList.getAmountOfTodos();
 
         while (true) {
             System.out.println("Введите число:");
