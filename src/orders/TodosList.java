@@ -15,11 +15,6 @@ public class TodosList {
         todoList.add(new TodoItem(5, 1000, "Собрать мебель"));
     }
 
-    public static void printFullTodoList() {
-        for (TodoItem todo : todoList) {
-            System.out.println("ID: " + todo.getId() + " Название: `" + todo.getName() + "` Цена: " + todo.getPrice());
-        }
-    }
 
     public static int getAmountOfTodos() {
         return todoList.size();
@@ -29,7 +24,7 @@ public class TodosList {
         todoList.add(todo);
     }
 
-    public static int getPriceByTodoId(int id){
+    public static int getPriceByTodoId(int id) {
         for (TodoItem todo : todoList) {
             if (todo.getId() == id) {
                 return todo.getPrice();
@@ -38,28 +33,27 @@ public class TodosList {
         return -1;
     }
 
-     public static String getNameByTodoId(int id){
+    public static String getNameByTodoId(int id) {
         for (TodoItem todo : todoList) {
-            if(todo.getId() == id){
+            if (todo.getId() == id) {
                 return todo.getName();
             }
         }
         return "";
     }
 
-    public static String getFullInfoByTodoId(int id){
+    public static void getInfoByTodoId(int id) {
         for (TodoItem todo : todoList) {
-            if(todo.getId() == id){
-                return ("ID: " + todo.getId() + " Название: `" + todo.getName() + "` Цена: " + todo.getPrice());
+            if (todo.getId() == id) {
+                todo.printInfo();
+                break;
             }
         }
-        return "";
     }
 
-
-
-
-
-
-
+    public static void printSetOfTodos() {
+        for (TodoItem todo : todoList) {
+            todo.printInfo();
+        }
+    }
 }

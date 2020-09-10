@@ -1,13 +1,13 @@
 package services;
 
-
 import orders.Order;
 
-import java.util.TreeSet;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 
-public class OrderService {
+public class OrderService implements Comparator<Order> {
 
-    private static TreeSet<Order> listOfOrders = new TreeSet<>();
+    private static LinkedHashSet<Order> listOfOrders = new LinkedHashSet<>();
 
     public static void addOrder(Order Order) {
         listOfOrders.add(Order);
@@ -17,13 +17,24 @@ public class OrderService {
         listOfOrders.remove(Order);
     }
 
-    public static Order getOrderById(int id) {
-        for (Order Order : listOfOrders) {
-
-            if (Order.getId() == id) {
-                return Order;
+    public static void removeOrderById(int id) {
+        for (Order order : listOfOrders) {
+            if (order.getId() == id) {
+                listOfOrders.remove(order);
+                System.out.println("Заказ удален");
+                return;
             }
         }
+    }
+
+    public static Order getOrderById(int id) {
+        for (Order order : listOfOrders) {
+
+            if (order.getId() == id) {
+                return order;
+            }
+        }
+
         return null;
     }
 
@@ -35,8 +46,23 @@ public class OrderService {
                 amount++;
             }
         }
+
         return amount;
     }
 
+    public static void printOrders() {
+        if (Order.getAmount() == 0) {
+            System.out.println("Список заказов пуст.");
+            return;
+        }
+        for (Order order : listOfOrders) {
+            order.printInfo();
+        }
+    }
 
+
+    @Override
+    public int compare(Order o1, Order o2) {
+        return o1.getId() - o2.getId();
+    }
 }

@@ -34,4 +34,8 @@ public class TodoItem {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void printInfo() {
+        System.out.println(("\t\tID: " + id + " Название: `" + name + "` Цена: " + price));
+    }
 }
