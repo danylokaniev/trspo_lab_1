@@ -8,5 +8,4 @@ public interface People {
 
     int getId();
 
-
 }

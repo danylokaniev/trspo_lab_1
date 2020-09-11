@@ -7,7 +7,7 @@ import java.util.LinkedHashSet;
 
 public class OrderService implements Comparator<Order> {
 
-    private static LinkedHashSet<Order> listOfOrders = new LinkedHashSet<>();
+    private static final LinkedHashSet<Order> listOfOrders = new LinkedHashSet<>();
 
     public static void addOrder(Order Order) {
         listOfOrders.add(Order);
@@ -19,6 +19,7 @@ public class OrderService implements Comparator<Order> {
 
     public static void removeOrderById(int id) {
         for (Order order : listOfOrders) {
+
             if (order.getId() == id) {
                 listOfOrders.remove(order);
                 System.out.println("Заказ удален");
@@ -34,19 +35,18 @@ public class OrderService implements Comparator<Order> {
                 return order;
             }
         }
-
         return null;
     }
 
     public static int countFinishedOrders() {
         int amount = 0;
+
         for (Order Order : listOfOrders) {
 
             if (Order.isFinished()) {
                 amount++;
             }
         }
-
         return amount;
     }
 

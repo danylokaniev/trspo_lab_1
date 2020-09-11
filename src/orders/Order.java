@@ -5,16 +5,15 @@ import peoples.Manager;
 import peoples.Repair;
 
 import java.util.HashSet;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order implements Comparable<Order> {
     private Repair repair;
     private Manager manager;
-    private Client client;
+    private final Client client;
 
-    private int id;
+    private final int id;
     private int totalPrice = 0;
     private static int amount = 0;
 
@@ -71,12 +70,14 @@ public class Order implements Comparable<Order> {
 
 
     public void printInfo() {
+
         System.out.println("\nНомер заказа - " + id);
         System.out.println("Имя клиента - " + client.getName());
         System.out.println("Имя менеджера - " + manager.getName());
         System.out.println("Имя ремонтника - " + repair.getName());
         System.out.println("Завершен: " + (isFinished ? "Да" : "Нет"));
         System.out.println("Список услуг: ");
+
         if (setOfTodos.isEmpty()) {
             System.out.println("Список услуг пуст");
         } else {

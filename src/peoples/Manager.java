@@ -51,12 +51,12 @@ public class Manager implements People {
         this.name = name;
     }
 
+    public static int getAmount() {
+        return amount;
+    }
+
     public void printInfo() {
         System.out.println("\n(Manager) Имя: " + name);
         System.out.println("\t     Зарплата: " + salary);
-    }
-
-    public static int getAmount() {
-        return amount;
     }
 }

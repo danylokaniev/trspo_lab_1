@@ -18,9 +18,11 @@ public class ClientService implements Comparator<Client> {
 
     public static void removeClientById(int id) {
         for (Client client : listOfClients) {
+
             if(client.getId() == id){
                 listOfClients.remove(client);
                 System.out.println("Клиент удален");
+
                 return;
             }
         }
@@ -46,7 +48,6 @@ public class ClientService implements Comparator<Client> {
                 return client;
             }
         }
-
         return null;
     }
 

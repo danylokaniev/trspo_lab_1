@@ -20,6 +20,7 @@ public class JobService implements Comparator<Repair> {
 
     public static void removeRepairById(int id) {
         for (Repair Repair : listOfRepairs) {
+
             if (Repair.getId() == id) {
                 listOfRepairs.remove(Repair);
                 System.out.println("Ремонтник удален");

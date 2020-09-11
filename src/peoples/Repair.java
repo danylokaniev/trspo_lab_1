@@ -83,6 +83,9 @@ public class Repair implements Comparable<Repair>, People {
         isFree = !this.isFree;
     }
 
+    public static int getAmount() {
+        return amount;
+    }
 
     public void printInfo() {
         System.out.println("\n(Repair) Имя: " + name);
@@ -90,10 +93,6 @@ public class Repair implements Comparable<Repair>, People {
         System.out.println("\t   Возраст: " + age);
         System.out.println("\t  Свободен: " + (isFree ? "Да" : "Нет"));
         System.out.println("\t        ID: " + id);
-    }
-
-    public static int getAmount() {
-        return amount;
     }
 
     @Override
