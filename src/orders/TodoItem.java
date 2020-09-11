@@ -1,8 +1,9 @@
 package orders;
 
-public class TodoItem {
-    private int price;
-    private String name;
+public final class TodoItem {
+
+    private final int price;
+    private final String name;
     private int id;
 
     public TodoItem(int id, int price, String name) {
@@ -15,18 +16,6 @@ public class TodoItem {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getId() {
         return id;
     }
@@ -35,7 +24,9 @@ public class TodoItem {
         this.id = id;
     }
 
-    public void printInfo() {
-        System.out.println(("\t\tID: " + id + " Название: `" + name + "` Цена: " + price));
+    @Override
+
+    public String toString() {
+        return ("\t\tID: " + id + " Название: `" + name + "` Цена: " + price);
     }
 }

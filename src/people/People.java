@@ -1,10 +1,8 @@
-package peoples;
+package people;
 
 public interface People {
 
     int amount = 0;
-
-    void printInfo();
 
     int getId();
 

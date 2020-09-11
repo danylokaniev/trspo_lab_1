@@ -1,13 +1,13 @@
-package peoples;
+package people;
 
 import services.ValidateService;
 
 import java.util.Scanner;
 
-public class Manager implements People {
+public final class Manager implements People {
 
-    private int salary;
-    private String name;
+    private final int salary;
+    private final String name;
     private final int id;
     private static int amount = 0;
 
@@ -31,10 +31,6 @@ public class Manager implements People {
         amount++;
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
     public String getName() {
         return name;
     }
@@ -43,20 +39,9 @@ public class Manager implements People {
         return id;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
+    @Override
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static int getAmount() {
-        return amount;
-    }
-
-    public void printInfo() {
-        System.out.println("\n(Manager) Имя: " + name);
-        System.out.println("\t     Зарплата: " + salary);
+    public String toString() {
+        return ("\n(Manager) Имя: " + name + "\n\t  Зарплата: " + salary);
     }
 }

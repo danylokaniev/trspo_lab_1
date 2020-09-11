@@ -2,11 +2,13 @@ package orders;
 
 import java.util.LinkedHashSet;
 
-public class TodosList {
+public final class TodosList {
 
-    private static final LinkedHashSet<TodoItem> todoList = new LinkedHashSet<>();
+    private static LinkedHashSet<TodoItem> todoList;
 
     public static void addTodos() {
+        todoList = new LinkedHashSet<>();
+
         todoList.add(new TodoItem(0, 900, "Покрасить стену"));
         todoList.add(new TodoItem(1, 300, "Починить розетку"));
         todoList.add(new TodoItem(2, 1250, "Положить плитку"));
@@ -20,9 +22,6 @@ public class TodosList {
         return todoList.size();
     }
 
-    public static void addTodo(TodoItem todo) {
-        todoList.add(todo);
-    }
 
     public static int getPriceByTodoId(int id) {
         for (TodoItem todo : todoList) {
@@ -33,20 +32,11 @@ public class TodosList {
         return -1;
     }
 
-    public static String getNameByTodoId(int id) {
-
-        for (TodoItem todo : todoList) {
-            if (todo.getId() == id) {
-                return todo.getName();
-            }
-        }
-        return "";
-    }
 
     public static void getInfoByTodoId(int id) {
         for (TodoItem todo : todoList) {
             if (todo.getId() == id) {
-                todo.printInfo();
+                System.out.println(todo.toString());
                 break;
             }
         }
@@ -54,7 +44,7 @@ public class TodosList {
 
     public static void printSetOfTodos() {
         for (TodoItem todo : todoList) {
-            todo.printInfo();
+            System.out.println(todo.toString());
         }
     }
 }

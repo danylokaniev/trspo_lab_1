@@ -1,16 +1,16 @@
 package orders;
 
-import peoples.Client;
-import peoples.Manager;
-import peoples.Repair;
+import people.Client;
+import people.Manager;
+import people.Repair;
 
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Order implements Comparable<Order> {
-    private Repair repair;
-    private Manager manager;
+public final class Order implements Comparable<Order> {
+    private final Repair repair;
+    private final Manager manager;
     private final Client client;
 
     private final int id;
@@ -18,32 +18,17 @@ public class Order implements Comparable<Order> {
     private static int amount = 0;
 
     private boolean isFinished;
-    HashSet<Integer> setOfTodos = new HashSet<>();
+    HashSet<Integer> setOfTodos;
 
     public Order(Repair repair, Manager manager, Client client) {
+        setOfTodos = new HashSet<>();
+
         this.repair = repair;
         this.manager = manager;
         this.client = client;
         this.id = amount;
         amount++;
         this.isFinished = false;
-    }
-
-    public Repair getRepair() {
-        return repair;
-    }
-
-
-    public void setRepair(Repair repair) {
-        this.repair = repair;
-    }
-
-    public Manager getManager() {
-        return manager;
-    }
-
-    public void setManager(Manager manager) {
-        this.manager = manager;
     }
 
     public int getId() {
@@ -59,17 +44,7 @@ public class Order implements Comparable<Order> {
         System.out.println("Состояние заказа изменено");
     }
 
-
-    public void addTodo(int todoId) {
-        setOfTodos.add(todoId);
-    }
-
-    public void deleteTodo(int todoId) {
-        setOfTodos.remove(todoId);
-    }
-
-
-    public void printInfo() {
+    public void getOrderDetails() {
 
         System.out.println("\nНомер заказа - " + id);
         System.out.println("Имя клиента - " + client.getName());

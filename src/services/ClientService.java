@@ -1,12 +1,11 @@
 package services;
 
-import peoples.Client;
-import peoples.Repair;
+import people.Client;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 
-public class ClientService implements Comparator<Client> {
+public final class ClientService implements Comparator<Client> {
 
     private static final LinkedHashSet<Client> listOfClients = new LinkedHashSet<>();
 
@@ -14,7 +13,6 @@ public class ClientService implements Comparator<Client> {
         listOfClients.add(client);
         System.out.println("Клиент добавлен");
     }
-
 
     public static void removeClientById(int id) {
         for (Client client : listOfClients) {
@@ -53,7 +51,7 @@ public class ClientService implements Comparator<Client> {
 
     public static void printFullListOfClients() {
         for (Client client : listOfClients) {
-            client.printInfo();
+            System.out.println(client.toString());
         }
     }
 

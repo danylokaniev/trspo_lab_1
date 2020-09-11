@@ -5,16 +5,12 @@ import orders.Order;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 
-public class OrderService implements Comparator<Order> {
+public final class OrderService implements Comparator<Order> {
 
     private static final LinkedHashSet<Order> listOfOrders = new LinkedHashSet<>();
 
     public static void addOrder(Order Order) {
         listOfOrders.add(Order);
-    }
-
-    public static void removeOrder(Order Order) {
-        listOfOrders.remove(Order);
     }
 
     public static void removeOrderById(int id) {
@@ -56,7 +52,7 @@ public class OrderService implements Comparator<Order> {
             return;
         }
         for (Order order : listOfOrders) {
-            order.printInfo();
+            order.getOrderDetails();
         }
     }
 

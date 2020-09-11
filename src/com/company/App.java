@@ -2,9 +2,9 @@ package com.company;
 
 import orders.Order;
 import orders.TodosList;
-import peoples.Client;
-import peoples.Manager;
-import peoples.Repair;
+import people.Client;
+import people.Manager;
+import people.Repair;
 import services.ClientService;
 import services.JobService;
 import services.OrderService;
@@ -54,7 +54,7 @@ public class App {
                     break;
 
                 case 6:
-                    manager.printInfo();
+                    System.out.println(manager.toString());
                     break;
 
                 case 7:
@@ -138,7 +138,7 @@ public class App {
         }
 
         System.out.println("\n----------");
-        freeRepair.printInfo();
+        System.out.println(freeRepair.toString());
         System.out.println("\n----------\n");
 
         Order newOrder = new Order(freeRepair, manager, client);

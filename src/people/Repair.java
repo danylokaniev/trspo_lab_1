@@ -1,18 +1,18 @@
-package peoples;
+package people;
 
 import services.JobService;
 import services.ValidateService;
 
 import java.util.Scanner;
 
-public class Repair implements Comparable<Repair>, People {
+public final class Repair implements Comparable<Repair>, People {
 
-    private int salary;
-    private int age;
+    private final int salary;
+    private final int age;
     private final int id;
     private static int amount = 0;
 
-    private String name;
+    private final String name;
     private boolean isFree;
 
     public Repair() {
@@ -51,28 +51,12 @@ public class Repair implements Comparable<Repair>, People {
         return salary;
     }
 
-    public int getAge() {
-        return age;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean getFreeState() {
@@ -87,16 +71,14 @@ public class Repair implements Comparable<Repair>, People {
         return amount;
     }
 
-    public void printInfo() {
-        System.out.println("\n(Repair) Имя: " + name);
-        System.out.println("\t  Зарплата: " + salary);
-        System.out.println("\t   Возраст: " + age);
-        System.out.println("\t  Свободен: " + (isFree ? "Да" : "Нет"));
-        System.out.println("\t        ID: " + id);
-    }
-
     @Override
     public int compareTo(Repair repair) {
         return repair.getSalary();
+    }
+
+    public String toString() {
+        return ("\n(Repair) Имя: " + name + "\n\t  Зарплата: " + salary
+                + "\n\t   Возраст: " + age + "\n\t  Свободен: " + (isFree ? "Да" : "Нет")
+                + "\n\t      ID: " + id);
     }
 }

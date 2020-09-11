@@ -1,13 +1,13 @@
 package com.company;
 
 import orders.TodosList;
-import peoples.Client;
-import peoples.Manager;
-import peoples.Repair;
+import people.Client;
+import people.Manager;
+import people.Repair;
 
 public class Main {
     public static void main(String[] args) {
-        // Добавляем Todo элементы в список
+
         TodosList.addTodos();
 
         new Client("Пушкина 3", "Вася Пупкин");
@@ -21,7 +21,6 @@ public class Main {
 
         Manager manager = new Manager(2700, "Сергей Скворнов");
 
-        // Запускаем приложение
         App.startApp(manager);
     }
 }

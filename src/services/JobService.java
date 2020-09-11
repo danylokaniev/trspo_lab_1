@@ -1,21 +1,17 @@
 package services;
 
-import peoples.Repair;
+import people.Repair;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 
-public class JobService implements Comparator<Repair> {
+public final class JobService implements Comparator<Repair> {
 
     private static final LinkedHashSet<Repair> listOfRepairs = new LinkedHashSet<>();
 
     public static void addRepair(Repair repair) {
         listOfRepairs.add(repair);
         System.out.println("Ремонтник добавлен");
-    }
-
-    public static void removeRepair(Repair repair) {
-        listOfRepairs.remove(repair);
     }
 
     public static void removeRepairById(int id) {
@@ -55,7 +51,7 @@ public class JobService implements Comparator<Repair> {
 
     public static void printFullListOfReceipes() {
         for (Repair repair : listOfRepairs) {
-            repair.printInfo();
+            System.out.println(repair.toString());
         }
     }
 
