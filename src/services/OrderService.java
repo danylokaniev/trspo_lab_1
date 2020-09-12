@@ -2,36 +2,27 @@ package services;
 
 import orders.Order;
 
-import java.util.Comparator;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 
-public final class OrderService implements Comparator<Order> {
+public final class OrderService {
 
-    private static final LinkedHashSet<Order> listOfOrders = new LinkedHashSet<>();
+    private static final ArrayList<Order> listOfOrders = new ArrayList<>();
 
     public static void addOrder(Order Order) {
         listOfOrders.add(Order);
     }
 
     public static void removeOrderById(int id) {
-        for (Order order : listOfOrders) {
-
-            if (order.getId() == id) {
-                listOfOrders.remove(order);
-                System.out.println("Заказ удален");
-                return;
-            }
-        }
+        listOfOrders.remove(id);
+        System.out.println("Заказ удален");
     }
 
     public static Order getOrderById(int id) {
-        for (Order order : listOfOrders) {
+        return listOfOrders.get(id);
+    }
 
-            if (order.getId() == id) {
-                return order;
-            }
-        }
-        return null;
+    public static int getAmount() {
+        return listOfOrders.size();
     }
 
     public static int countFinishedOrders() {
@@ -47,18 +38,14 @@ public final class OrderService implements Comparator<Order> {
     }
 
     public static void printOrders() {
-        if (Order.getAmount() == 0) {
+        if (listOfOrders.size() == 0) {
             System.out.println("Список заказов пуст.");
             return;
         }
-        for (Order order : listOfOrders) {
-            order.getOrderDetails();
+
+        for (int i = 0; i < listOfOrders.size(); i++) {
+            System.out.println("\n#" + i);
+            listOfOrders.get(i).getOrderDetails();
         }
-    }
-
-
-    @Override
-    public int compare(Order o1, Order o2) {
-        return o1.getId() - o2.getId();
     }
 }

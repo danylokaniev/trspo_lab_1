@@ -11,8 +11,6 @@ public class ValidateService {
         int id;
 
         while (true) {
-            System.out.println("\tВведите число:");
-
             if (!scanner.hasNextInt()) {
                 System.out.println("\tЭто не число. Попробуйте еще раз.");
                 scanner.next();

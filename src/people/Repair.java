@@ -4,13 +4,13 @@ import services.JobService;
 import services.ValidateService;
 
 import java.util.Scanner;
+import java.util.UUID;
 
-public final class Repair implements Comparable<Repair>, People {
+public final class Repair implements People {
 
     private final int salary;
     private final int age;
-    private final int id;
-    private static int amount = 0;
+    private final String id;
 
     private final String name;
     private boolean isFree;
@@ -29,10 +29,10 @@ public final class Repair implements Comparable<Repair>, People {
         this.salary = ValidateService.getCorrectNumber(5000);
 
         this.isFree = true;
-        this.id = amount;
-        amount++;
+        this.id = UUID.randomUUID().toString();
 
         JobService.addRepair(this);
+        System.out.println("Ремонтник добавлен");
     }
 
     public Repair(int salary, int age, String name) {
@@ -41,8 +41,7 @@ public final class Repair implements Comparable<Repair>, People {
         this.salary = salary;
         this.name = name;
         this.isFree = true;
-        this.id = amount;
-        amount++;
+        this.id = UUID.randomUUID().toString();
 
         JobService.addRepair(this);
     }
@@ -55,7 +54,7 @@ public final class Repair implements Comparable<Repair>, People {
         return name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -67,14 +66,7 @@ public final class Repair implements Comparable<Repair>, People {
         isFree = !this.isFree;
     }
 
-    public static int getAmount() {
-        return amount;
-    }
-
     @Override
-    public int compareTo(Repair repair) {
-        return repair.getSalary();
-    }
 
     public String toString() {
         return ("\n(Repair) Имя: " + name + "\n\t  Зарплата: " + salary

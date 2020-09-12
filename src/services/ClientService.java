@@ -2,40 +2,26 @@ package services;
 
 import people.Client;
 
-import java.util.Comparator;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 
-public final class ClientService implements Comparator<Client> {
+public final class ClientService {
 
-    private static final LinkedHashSet<Client> listOfClients = new LinkedHashSet<>();
+    private static final ArrayList<Client> listOfClients = new ArrayList<>();
 
     public static void addClient(Client client) {
         listOfClients.add(client);
-        System.out.println("Клиент добавлен");
     }
 
     public static void removeClientById(int id) {
-        for (Client client : listOfClients) {
-
-            if(client.getId() == id){
-                listOfClients.remove(client);
-                System.out.println("Клиент удален");
-
-                return;
-            }
-        }
-
+        listOfClients.remove(id);
     }
 
     public static Client getClientById(int id) {
-        for (Client client : listOfClients) {
+        return listOfClients.get(id);
+    }
 
-            if (client.getId() == id) {
-                return client;
-            }
-        }
-
-        return null;
+    public static int getAmount() {
+        return listOfClients.size();
     }
 
 
@@ -50,13 +36,13 @@ public final class ClientService implements Comparator<Client> {
     }
 
     public static void printFullListOfClients() {
-        for (Client client : listOfClients) {
-            System.out.println(client);
+        if (listOfClients.size() == 0) {
+            System.out.println("Список клиентов пуст.");
+            return;
         }
-    }
 
-    @Override
-    public int compare(Client o1, Client o2) {
-        return o1.getId() - o2.getId();
+        for (int i = 0; i < listOfClients.size(); i++) {
+            System.out.println("#" + i + listOfClients.get(i));
+        }
     }
 }

@@ -19,8 +19,9 @@ public class Main {
         new Repair(2000, 40, "Григорий Лупс");
         new Repair(2150, 43, "Аргентин Скворечник");
 
-        Manager manager = new Manager(2700, "Сергей Скворнов");
+        new Manager(2700, "Сергей Скворнов");
+        new Manager(3500, "Анастасия Васнецова");
 
-        App.startApp(manager);
+        App.startApp();
     }
 }

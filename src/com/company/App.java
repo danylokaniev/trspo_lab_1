@@ -5,88 +5,94 @@ import orders.TodosList;
 import people.Client;
 import people.Manager;
 import people.Repair;
-import services.ClientService;
-import services.JobService;
-import services.OrderService;
-import services.ValidateService;
+import services.*;
 
 import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
 
-    public static void startApp(Manager manager) {
+    public static void startApp() {
 
         int userChoice = -1;
 
-        while (userChoice != 11) {
+        while (userChoice < 14) {
 
             userChoice = printMenu();
 
             switch (userChoice) {
 
-                case 0:
+                case 1:
                     ClientService.printFullListOfClients();
                     break;
 
-                case 1:
+                case 2:
                     new Client();
                     break;
 
-                case 2:
+                case 3:
                     System.out.println("Введите номер клиента, которого желаете удалить:");
-                    int clientId = ValidateService.getCorrectNumber(Client.getAmount());
+                    int clientId = ValidateService.getCorrectNumber(ClientService.getAmount());
                     ClientService.removeClientById(clientId);
                     break;
 
-                case 3:
+                case 4:
                     JobService.printFullListOfReceipes();
                     break;
 
-                case 4:
+                case 5:
                     new Repair();
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("Введите номер ремонтника, которого желаете удалить:");
-                    int repairId = ValidateService.getCorrectNumber(Repair.getAmount());
+                    int repairId = ValidateService.getCorrectNumber(JobService.getAmount());
                     JobService.removeRepairById(repairId);
                     break;
 
-                case 6:
-                    System.out.println(manager);
-                    break;
-
                 case 7:
-                    OrderService.printOrders();
+                    ManagerService.printFullListOfManagers();
                     break;
 
                 case 8:
-                    createOrder(manager);
+                    new Manager();
                     break;
 
                 case 9:
-                    if (Order.getAmount() == 0) {
+                    System.out.println("Введите номер менеджера, которого желаете удалить:");
+                    int managerID = ValidateService.getCorrectNumber(ManagerService.getAmount());
+                    ManagerService.removeManagerById(managerID);
+                    break;
+
+                case 10:
+                    OrderService.printOrders();
+                    break;
+
+                case 11:
+                    createOrder();
+                    break;
+
+                case 12:
+                    if (OrderService.getAmount() == 0) {
                         System.out.println("Список заказов пуст.");
 
                     } else {
                         System.out.println("Введите номер заказа, который желаете удалить:");
-                        int orderId = ValidateService.getCorrectNumber(Order.getAmount());
+                        int orderId = ValidateService.getCorrectNumber(OrderService.getAmount());
                         OrderService.removeOrderById(orderId);
                     }
                     break;
 
-                case 10:
-                    if (Order.getAmount() == 0) {
+                case 13:
+                    if (OrderService.getAmount() == 0) {
                         System.out.println("Список заказов пуст.");
                     } else {
                         OrderService.printOrders();
-                        System.out.println("Введите номер заказа, который желаете удалить:");
-                        int orderToggleId = ValidateService.getCorrectNumber(Order.getAmount());
+                        System.out.println("Введите номер заказа, состояние которого хотите изменить:");
+                        int orderToggleId = ValidateService.getCorrectNumber(OrderService.getAmount());
                         Objects.requireNonNull(OrderService.getOrderById(orderToggleId)).toggleFinishedState();
                     }
                     break;
-
                 default:
                     break;
             }
@@ -96,43 +102,49 @@ public class App {
     public static int printMenu() {
         System.out.println("--------------------------------------------");
         System.out.println("Меню: ");
-        System.out.println("0. Список клиентов");
-        System.out.println("1. Добавить клиента");
-        System.out.println("2. Удалить клиента");
-        System.out.println("3. Список ремонтников");
-        System.out.println("4. Добавить ремонтника");
-        System.out.println("5. Удалить ремонтника");
-        System.out.println("6. Список менеджеров");
-        System.out.println("7. Список заказов");
-        System.out.println("8. Создать заказ");
-        System.out.println("9. Удалить заказ");
-        System.out.println("10. Сменить состояние заказа");
-        System.out.println("11. Завершить");
+        System.out.println("1. Список клиентов");
+        System.out.println("2. Добавить клиента");
+        System.out.println("3. Удалить клиента");
+        System.out.println("4. Список ремонтников");
+        System.out.println("5. Добавить ремонтника");
+        System.out.println("6. Удалить ремонтника");
+        System.out.println("7. Список менеджеров");
+        System.out.println("8. Добавить менеджера");
+        System.out.println("9. Удалить менеджеров");
+        System.out.println("10. Список заказов");
+        System.out.println("11. Создать заказ");
+        System.out.println("12. Удалить заказ");
+        System.out.println("13. Сменить состояние заказа");
+        System.out.println("14. Завершить");
         System.out.println("--------------------------------------------");
 
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("Что желаете узнать? ");
-        return ValidateService.getCorrectNumber(12);
+        return ValidateService.getCorrectNumber(15);
     }
 
-    public static void createOrder(Manager manager) {
+    public static void createOrder() {
 
         Scanner scanner = new Scanner(System.in);
 
         ClientService.printFullListOfClients();
-        System.out.println("Введите номер клиента:");
+        System.out.println("\n\tВведите номер клиента:");
 
-        int clientId = ValidateService.getCorrectNumber(Client.getAmount());
+        int clientId = ValidateService.getCorrectNumber(ClientService.getAmount());
         Client client = ClientService.getClientById(clientId);
 
-        System.out.println("На заказ будет призначен первый свободный ремонтник, а именно: ");
+        ManagerService.printFullListOfManagers();
+        System.out.println("\n\tВведите номер менеджера:");
+
+        int managerID = ValidateService.getCorrectNumber(ManagerService.getAmount());
+        Manager manager = ManagerService.getManagerById(managerID);
+
+        System.out.println("\n\tНа заказ будет призначен первый свободный ремонтник, а именно: ");
 
         Repair freeRepair = JobService.getFirstFreeRepair();
 
         if (freeRepair == null) {
-            System.out.println("К сожалению, нет свободных ремонтников");
-            System.out.println("Подождите пока хотя бы один освободится");
+            System.out.println("\n\tК сожалению, нет свободных ремонтников");
+            System.out.println("\n\tПодождите пока хотя бы один освободится");
 
             return;
         }
@@ -143,10 +155,10 @@ public class App {
 
         Order newOrder = new Order(freeRepair, manager, client);
 
-        System.out.println("Вот список доступных услуг:");
+        System.out.println("\n\tВот список доступных услуг:");
         TodosList.printSetOfTodos();
 
-        System.out.println("В одну строку введите номера услуг, которые хотите заказать.\n" +
+        System.out.println("\n\tВ одну строку введите номера услуг, которые хотите заказать.\n" +
                 "Все некорректные данные будут пропущены.");
 
         String setOfTodos = scanner.nextLine();

@@ -4,34 +4,35 @@ import people.Client;
 import people.Manager;
 import people.Repair;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class Order implements Comparable<Order> {
+public final class Order {
+
     private final Repair repair;
     private final Manager manager;
     private final Client client;
 
-    private final int id;
+    private final String id;
     private int totalPrice = 0;
-    private static int amount = 0;
 
     private boolean isFinished;
-    HashSet<Integer> setOfTodos;
+    ArrayList<Integer> setOfTodos;
 
     public Order(Repair repair, Manager manager, Client client) {
-        setOfTodos = new HashSet<>();
+        setOfTodos = new ArrayList<>();
 
         this.repair = repair;
         this.manager = manager;
         this.client = client;
-        this.id = amount;
-        amount++;
+        this.id = UUID.randomUUID().toString();
         this.isFinished = false;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -80,14 +81,5 @@ public final class Order implements Comparable<Order> {
                 totalPrice += TodosList.getPriceByTodoId(id);
             }
         }
-    }
-
-    public static int getAmount() {
-        return amount;
-    }
-
-    @Override
-    public int compareTo(Order order) {
-        return order.getId();
     }
 }

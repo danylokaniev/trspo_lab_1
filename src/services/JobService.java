@@ -2,38 +2,27 @@ package services;
 
 import people.Repair;
 
-import java.util.Comparator;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 
-public final class JobService implements Comparator<Repair> {
+public final class JobService {
 
-    private static final LinkedHashSet<Repair> listOfRepairs = new LinkedHashSet<>();
+    private static final ArrayList<Repair> listOfRepairs = new ArrayList<>();
 
     public static void addRepair(Repair repair) {
         listOfRepairs.add(repair);
-        System.out.println("Ремонтник добавлен");
     }
 
     public static void removeRepairById(int id) {
-        for (Repair Repair : listOfRepairs) {
+        listOfRepairs.remove(id);
+        System.out.println("Ремонтник удален");
+    }
 
-            if (Repair.getId() == id) {
-                listOfRepairs.remove(Repair);
-                System.out.println("Ремонтник удален");
-                return;
-            }
-        }
+    public static int getAmount() {
+        return listOfRepairs.size();
     }
 
     public static Repair getRepairById(int id) {
-        for (Repair repair : listOfRepairs) {
-
-            if (repair.getId() == id) {
-                return repair;
-            }
-        }
-
-        return null;
+        return listOfRepairs.get(id);
     }
 
     public static Repair getFirstFreeRepair() {
@@ -50,13 +39,14 @@ public final class JobService implements Comparator<Repair> {
     }
 
     public static void printFullListOfReceipes() {
-        for (Repair repair : listOfRepairs) {
-            System.out.println(repair);
-        }
-    }
 
-    @Override
-    public int compare(Repair repair1, Repair repair2) {
-        return repair1.getSalary() - repair2.getSalary();
+        if (listOfRepairs.size() == 0) {
+            System.out.println("Список ремонтников пуст.");
+            return;
+        }
+
+        for (int i = 0; i < listOfRepairs.size(); i++) {
+            System.out.println("#" + i + listOfRepairs.get(i));
+        }
     }
 }
