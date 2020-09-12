@@ -36,7 +36,7 @@ public final class TodosList {
     public static void getInfoByTodoId(int id) {
         for (TodoItem todo : todoList) {
             if (todo.getId() == id) {
-                System.out.println(todo.toString());
+                System.out.println(todo);
                 break;
             }
         }
@@ -44,7 +44,7 @@ public final class TodosList {
 
     public static void printSetOfTodos() {
         for (TodoItem todo : todoList) {
-            System.out.println(todo.toString());
+            System.out.println(todo);
         }
     }
 }

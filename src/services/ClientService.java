@@ -51,7 +51,7 @@ public final class ClientService implements Comparator<Client> {
 
     public static void printFullListOfClients() {
         for (Client client : listOfClients) {
-            System.out.println(client.toString());
+            System.out.println(client);
         }
     }
 

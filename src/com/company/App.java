@@ -54,7 +54,7 @@ public class App {
                     break;
 
                 case 6:
-                    System.out.println(manager.toString());
+                    System.out.println(manager);
                     break;
 
                 case 7:
@@ -138,7 +138,7 @@ public class App {
         }
 
         System.out.println("\n----------");
-        System.out.println(freeRepair.toString());
+        System.out.println(freeRepair);
         System.out.println("\n----------\n");
 
         Order newOrder = new Order(freeRepair, manager, client);

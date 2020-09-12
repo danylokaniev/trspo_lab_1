@@ -51,7 +51,7 @@ public final class JobService implements Comparator<Repair> {
 
     public static void printFullListOfReceipes() {
         for (Repair repair : listOfRepairs) {
-            System.out.println(repair.toString());
+            System.out.println(repair);
         }
     }
 
