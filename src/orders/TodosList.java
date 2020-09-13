@@ -4,9 +4,9 @@ import java.util.LinkedHashSet;
 
 public final class TodosList {
 
-    private static LinkedHashSet<TodoItem> todoList;
+    private LinkedHashSet<TodoItem> todoList;
 
-    public static void addTodos() {
+    public TodosList() {
         todoList = new LinkedHashSet<>();
 
         todoList.add(new TodoItem(0, 900, "Покрасить стену"));
@@ -17,13 +17,12 @@ public final class TodosList {
         todoList.add(new TodoItem(5, 1000, "Собрать мебель"));
     }
 
-
-    public static int getAmountOfTodos() {
+    public int getAmountOfTodos() {
         return todoList.size();
     }
 
 
-    public static int getPriceByTodoId(int id) {
+    public int getPriceByTodoId(int id) {
         for (TodoItem todo : todoList) {
             if (todo.getId() == id) {
                 return todo.getPrice();
@@ -33,7 +32,7 @@ public final class TodosList {
     }
 
 
-    public static void getInfoByTodoId(int id) {
+    public void getInfoByTodoId(int id) {
         for (TodoItem todo : todoList) {
             if (todo.getId() == id) {
                 System.out.println(todo);
@@ -42,7 +41,7 @@ public final class TodosList {
         }
     }
 
-    public static void printSetOfTodos() {
+    public void printSetOfTodos() {
         for (TodoItem todo : todoList) {
             System.out.println(todo);
         }

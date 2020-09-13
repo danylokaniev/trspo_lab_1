@@ -12,7 +12,7 @@ public final class Manager implements People {
     private final String name;
     private final String id;
 
-    public Manager() {
+    public Manager(ManagerService ManagerService) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("(Manager) Введите имя: ");
@@ -27,7 +27,7 @@ public final class Manager implements People {
         System.out.println("Менеджер добавлен");
     }
 
-    public Manager(int salary, String name) {
+    public Manager(int salary, String name, ManagerService ManagerService) {
         this.salary = salary;
         this.name = name;
         this.id = UUID.randomUUID().toString();

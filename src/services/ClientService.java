@@ -6,26 +6,30 @@ import java.util.ArrayList;
 
 public final class ClientService {
 
-    private static final ArrayList<Client> listOfClients = new ArrayList<>();
+    private final ArrayList<Client> listOfClients;
 
-    public static void addClient(Client client) {
+    public ClientService() {
+        listOfClients = new ArrayList<>();
+    }
+
+    public void addClient(Client client) {
         listOfClients.add(client);
     }
 
-    public static void removeClientById(int id) {
+    public void removeClientById(int id) {
         listOfClients.remove(id);
     }
 
-    public static Client getClientById(int id) {
+    public Client getClientById(int id) {
         return listOfClients.get(id);
     }
 
-    public static int getAmount() {
+    public int getAmount() {
         return listOfClients.size();
     }
 
 
-    public static Client getClientByName(String name) {
+    public Client getClientByName(String name) {
         for (Client client : listOfClients) {
 
             if (client.getName().equals(name)) {
@@ -35,7 +39,7 @@ public final class ClientService {
         return null;
     }
 
-    public static void printFullListOfClients() {
+    public void printFullListOfClients() {
         if (listOfClients.size() == 0) {
             System.out.println("Список клиентов пуст.");
             return;

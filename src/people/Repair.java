@@ -15,7 +15,7 @@ public final class Repair implements People {
     private final String name;
     private boolean isFree;
 
-    public Repair() {
+    public Repair(JobService JobService) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -35,7 +35,7 @@ public final class Repair implements People {
         System.out.println("Ремонтник добавлен");
     }
 
-    public Repair(int salary, int age, String name) {
+    public Repair(int salary, int age, String name, JobService JobService) {
 
         this.age = age;
         this.salary = salary;

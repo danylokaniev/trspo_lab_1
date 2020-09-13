@@ -6,26 +6,30 @@ import java.util.ArrayList;
 
 public final class JobService {
 
-    private static final ArrayList<Repair> listOfRepairs = new ArrayList<>();
+    private final ArrayList<Repair> listOfRepairs;
 
-    public static void addRepair(Repair repair) {
+    public JobService() {
+        listOfRepairs = new ArrayList<>();
+    }
+
+    public void addRepair(Repair repair) {
         listOfRepairs.add(repair);
     }
 
-    public static void removeRepairById(int id) {
+    public void removeRepairById(int id) {
         listOfRepairs.remove(id);
         System.out.println("Ремонтник удален");
     }
 
-    public static int getAmount() {
+    public int getAmount() {
         return listOfRepairs.size();
     }
 
-    public static Repair getRepairById(int id) {
+    public Repair getRepairById(int id) {
         return listOfRepairs.get(id);
     }
 
-    public static Repair getFirstFreeRepair() {
+    public Repair getFirstFreeRepair() {
         for (Repair repair : listOfRepairs) {
 
             if (repair.getFreeState()) {
@@ -38,7 +42,7 @@ public final class JobService {
         return null;
     }
 
-    public static void printFullListOfReceipes() {
+    public void printFullListOfReceipes() {
 
         if (listOfRepairs.size() == 0) {
             System.out.println("Список ремонтников пуст.");

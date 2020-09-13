@@ -1,31 +1,36 @@
 package services;
 
 import orders.Order;
+import orders.TodosList;
 
 import java.util.ArrayList;
 
 public final class OrderService {
 
-    private static final ArrayList<Order> listOfOrders = new ArrayList<>();
+    private final ArrayList<Order> listOfOrders;
 
-    public static void addOrder(Order Order) {
+    public OrderService() {
+        listOfOrders = new ArrayList<>();
+    }
+
+    public void addOrder(Order Order) {
         listOfOrders.add(Order);
     }
 
-    public static void removeOrderById(int id) {
+    public void removeOrderById(int id) {
         listOfOrders.remove(id);
         System.out.println("Заказ удален");
     }
 
-    public static Order getOrderById(int id) {
+    public Order getOrderById(int id) {
         return listOfOrders.get(id);
     }
 
-    public static int getAmount() {
+    public int getAmount() {
         return listOfOrders.size();
     }
 
-    public static int countFinishedOrders() {
+    public int countFinishedOrders() {
         int amount = 0;
 
         for (Order Order : listOfOrders) {
@@ -37,7 +42,7 @@ public final class OrderService {
         return amount;
     }
 
-    public static void printOrders() {
+    public void printOrders(TodosList TodosList) {
         if (listOfOrders.size() == 0) {
             System.out.println("Список заказов пуст.");
             return;
@@ -45,7 +50,7 @@ public final class OrderService {
 
         for (int i = 0; i < listOfOrders.size(); i++) {
             System.out.println("\n#" + i);
-            listOfOrders.get(i).getOrderDetails();
+            listOfOrders.get(i).getOrderDetails(TodosList);
         }
     }
 }

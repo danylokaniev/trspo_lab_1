@@ -1,4 +1,4 @@
-package com.company;
+package App;
 
 import orders.Order;
 import orders.TodosList;
@@ -12,7 +12,11 @@ import java.util.Scanner;
 
 public class App {
 
-    public static void startApp() {
+    public static void startApp(ClientService ClientService,
+                                JobService JobService,
+                                ManagerService ManagerService,
+                                OrderService OrderService,
+                                TodosList TodosList) {
 
         int userChoice = -1;
 
@@ -27,7 +31,7 @@ public class App {
                     break;
 
                 case 2:
-                    new Client();
+                    new Client(ClientService);
                     break;
 
                 case 3:
@@ -41,7 +45,7 @@ public class App {
                     break;
 
                 case 5:
-                    new Repair();
+                    new Repair(JobService);
                     break;
 
                 case 6:
@@ -55,7 +59,7 @@ public class App {
                     break;
 
                 case 8:
-                    new Manager();
+                    new Manager(ManagerService);
                     break;
 
                 case 9:
@@ -65,11 +69,11 @@ public class App {
                     break;
 
                 case 10:
-                    OrderService.printOrders();
+                    OrderService.printOrders(TodosList);
                     break;
 
                 case 11:
-                    createOrder();
+                    createOrder(ClientService, ManagerService, JobService, TodosList, OrderService);
                     break;
 
                 case 12:
@@ -87,7 +91,7 @@ public class App {
                     if (OrderService.getAmount() == 0) {
                         System.out.println("Список заказов пуст.");
                     } else {
-                        OrderService.printOrders();
+                        OrderService.printOrders(TodosList);
                         System.out.println("Введите номер заказа, состояние которого хотите изменить:");
                         int orderToggleId = ValidateService.getCorrectNumber(OrderService.getAmount());
                         Objects.requireNonNull(OrderService.getOrderById(orderToggleId)).toggleFinishedState();
@@ -122,7 +126,11 @@ public class App {
         return ValidateService.getCorrectNumber(15);
     }
 
-    public static void createOrder() {
+    public static void createOrder(ClientService ClientService,
+                                   ManagerService ManagerService,
+                                   JobService JobService,
+                                   TodosList TodosList,
+                                   OrderService OrderService) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -162,7 +170,7 @@ public class App {
                 "Все некорректные данные будут пропущены.");
 
         String setOfTodos = scanner.nextLine();
-        newOrder.createSetOfTodos(setOfTodos);
+        newOrder.createSetOfTodos(setOfTodos, TodosList);
 
         OrderService.addOrder(newOrder);
         System.out.println("Заказ создан");

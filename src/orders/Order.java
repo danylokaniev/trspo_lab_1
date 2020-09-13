@@ -45,7 +45,7 @@ public final class Order {
         System.out.println("Состояние заказа изменено");
     }
 
-    public void getOrderDetails() {
+    public void getOrderDetails(TodosList TodosList) {
 
         System.out.println("\nНомер заказа - " + id);
         System.out.println("Имя клиента - " + client.getName());
@@ -65,7 +65,7 @@ public final class Order {
         System.out.println("Сумма к оплате: " + totalPrice + "\n");
     }
 
-    public void createSetOfTodos(String stringByTodosList) {
+    public void createSetOfTodos(String stringByTodosList, TodosList TodosList) {
         int maxTodoId = TodosList.getAmountOfTodos();
 
         String pattern = "\\b(\\d+)\\b";

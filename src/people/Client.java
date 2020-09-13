@@ -12,7 +12,7 @@ public final class Client implements People {
 
     private final String id;
 
-    public Client() {
+    public Client(ClientService ClientService) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -28,7 +28,7 @@ public final class Client implements People {
         System.out.println("Клиент добавлен");
     }
 
-    public Client(String address, String name) {
+    public Client(String address, String name, ClientService ClientService) {
 
         this.address = address;
         this.name = name;

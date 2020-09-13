@@ -5,26 +5,30 @@ import people.Manager;
 import java.util.ArrayList;
 
 public class ManagerService {
-    private static final ArrayList<Manager> listOfManagers = new ArrayList<>();
+    private final ArrayList<Manager> listOfManagers;
 
-    public static void addManager(Manager manager) {
+    public ManagerService() {
+        listOfManagers = new ArrayList<>();
+    }
+
+    public void addManager(Manager manager) {
         listOfManagers.add(manager);
     }
 
-    public static void removeManagerById(int id) {
+    public void removeManagerById(int id) {
         listOfManagers.remove(id);
     }
 
-    public static Manager getManagerById(int id) {
+    public Manager getManagerById(int id) {
         return listOfManagers.get(id);
     }
 
-    public static int getAmount() {
+    public int getAmount() {
         return listOfManagers.size();
     }
 
 
-    public static Manager getManagerByName(String name) {
+    public Manager getManagerByName(String name) {
         for (Manager manager : listOfManagers) {
 
             if (manager.getName().equals(name)) {
@@ -34,14 +38,14 @@ public class ManagerService {
         return null;
     }
 
-    public static void printFullListOfManagers() {
+    public void printFullListOfManagers() {
         if (listOfManagers.size() == 0) {
             System.out.println("Список менеджеров пуст.");
             return;
         }
 
         for (int i = 0; i < listOfManagers.size(); i++) {
-            System.out.println("#" + i+ listOfManagers.get(i));
+            System.out.println("#" + i + listOfManagers.get(i));
         }
     }
 }
